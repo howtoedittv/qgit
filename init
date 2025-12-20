@@ -1,0 +1,40 @@
+# Detect distro and install git and gh
+
+if command -v pacman &>/dev/null; then
+    echo "Detected Arch-based system."
+    sudo pacman -Sy --needed git gh 
+
+elif command -v apt &>/dev/null; then
+    echo "Detected Debian/Ubuntu-based system."
+    sudo apt update
+    sudo apt install -y git gh
+
+elif command -v dnf &>/dev/null; then
+    echo "Detected Fedora-based system."
+    sudo dnf install -y git gh
+
+elif command -v zypper &>/dev/null; then
+    echo "Detected openSUSE-based system."
+    sudo zypper refresh
+    sudo zypper install -y git gh
+
+elif command -v xbps-install &>/dev/null; then
+    echo "Detected Void Linux."
+    sudo xbps-install -Sy git gh
+
+elif command -v emerge &>/dev/null; then
+    echo "Detected Gentoo."
+    sudo emerge --ask git gh 
+
+elif command -v pkg &>/dev/null; then
+    echo "Detected Freebsd."
+    sudo pkg install git gh
+
+else
+    echo "Unsupported Linux distribution."
+    echo "Please install Alacritty manually."
+    exit 1
+fi
+
+gh auth login
+
