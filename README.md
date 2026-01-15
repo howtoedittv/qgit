@@ -25,7 +25,9 @@ chmod +x init
 chmod +x qgit
 sudo mv $PWD/qgit /usr/bin/
 with your package manager install git github-cli xdg-utils (note: on bsd based distros the github-cli package is useally named gh insted)
-in the terminal type gh and follow the insturctions there (log into your github acount on your default browser and input a given code)
+
+in the terminal type gh auth login and fallow the intructions on screen
+
 after that wait until your in your prompt once more and type in:
 git config --global user.email <your email>
 git config --global user.name <your username>
