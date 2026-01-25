@@ -1,0 +1,31 @@
+#!/bin/sh
+
+case "$1" in
+  auth)
+    echo "Starting GitHub authentication..."
+    gh auth login
+
+    echo "Enter email:"
+    read email
+
+    echo "Enter username:"
+    read username
+
+    git config --global user.email "$email"
+    git config --global user.name "$username"
+
+    echo "Git identity configured successfully."
+    ;;
+  
+  *)
+    git init
+    git add .
+    git commit -m "Initial commit"
+
+    echo -n "Enter desired GitHub repo name: "
+    read name
+
+    gh repo create "$name" --public --source=. --remote=origin --push
+    ;;
+esac
+
