@@ -34,16 +34,5 @@ else
     exit 1
 fi
 
-gh auth login
-
-echo "enter email"
-read email
-
-echo "enter username"
-read username
-
-git config --global user.email $email
-git config --global user.name $username
-
 chmod +x $PWD/mogit
 sudo mv $PWD/mogit /usr/bin/	
